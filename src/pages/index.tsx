@@ -5,40 +5,42 @@ import Layout from "../components/layout"
 import "./index.scss"
 import Seo from "../components/seo"
 
-const getTime = () => {
-  const date = new Date()
-  const h = date.getHours()
-  const m = date.getMinutes()
-  const s = date.getSeconds()
-
-  const hh = h < 10 ? "0" + h : h
-  const mm = m < 10 ? "0" + m : m
-  const ss = s < 10 ? "0" + s : s
-
-  return hh + ":" + mm + ":" + ss + " "
-}
-
 const IndexPage = () => {
-  const [time, setTime] = React.useState(undefined)
-
-  // Similar to componentDidMount and componentDidUpdate:
-  React.useEffect(() => {
-    const currentTime = setInterval(() => {
-      setTime(getTime())
-    }, 1000)
-
-    return () => {
-      clearInterval(currentTime)
-    }
-  }, [])
-
+  const articles = [1, 2, 3]
   return (
     <Layout>
       <Seo title="Home" />
-      <article className="container">
-        <h1>Contenu à venir</h1>
-        <div className="time">{time}</div>
-      </article>
+      <section className="container">
+        <h1>Dernières publications</h1>
+        <div className="separator"></div>
+        <div className="portefolio-container">
+          <section className="last-post-container">
+            <article className="recent-article main-post">
+              <img src="https://fakeimg.pl/400x400" />
+            </article>
+
+            {/* <section className="recent-article-container"> */}
+            {articles.map(a => (
+              <article className="recent-article">
+                <img src="https://fakeimg.pl/400x400" />
+              </article>
+            ))}
+            {/* </section> */}
+          </section>
+        </div>
+
+        <h1>Nos Recentes rencontres</h1>
+        <div className="separator"></div>
+        <div className="portefolio-container">
+          <section className="recent-meeting-container">
+            {articles.map(a => (
+              <article className="recent-meeting">
+                <img src="https://fakeimg.pl/250x250" />
+              </article>
+            ))}
+          </section>
+        </div>
+      </section>
       {/* <Image /> */}
     </Layout>
   )

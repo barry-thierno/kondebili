@@ -1,24 +1,69 @@
 .container {
   //   height: 90vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
   color: #fff;
-  flex-direction: column;
+  //   flex-direction: column;
   h1 {
     font-size: 3rem;
     text-align: center;
   }
 }
-.time {
-  color: #d94f5c;
-  font-size: 3rem;
-  margin-top: 20px;
+.separator {
+  height: 0.2rem;
+  width: 10rem;
+  background-color: #fff;
+  border-radius: 74%;
+  margin: auto;
+}
+.portefolio-container {
+  display: flex;
+  justify-content: center;
+}
+.last-post-container {
+  //   color: #d94f5c;
+  display: flex;
+  margin-top: 5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 85%;
+}
+.main-post {
+  flex-basis: 10%;
+  //   width: 45%;
+  //   display: flex;
+  //   justify-content: center;
+  //   margin-right: 2rem;
+  //   flex-shrink: 40%;
+  //   margin-bottom: 1.5rem;
+  //   align-items: center;
+}
+// .recent-article-container {
+//   //   width: 45%;
+//   display: flex;
+//   flex-wrap: wrap;
+//   align-content: space-between;
+//   justify-content: center;
+// }
+.recent-article {
+  margin: 1rem;
+  flex-shrink: 2;
 }
 
+.recent-meeting-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5rem;
+  width: 85%;
+  flex-wrap: wrap;
+}
+.recent-meeting {
+  margin-bottom: 1rem;
+}
 /* Small screens */
-// @media all and (max-width: 500px) {
-//   .container {
-//     flex: 0 1 40%;
-//   }
-// }
+@media all and (max-width: 500px) {
+  .last-post-container {
+    flex-direction: column;
+  }
+}

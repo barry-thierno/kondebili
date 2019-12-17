@@ -28,6 +28,11 @@ const Header: React.FunctionComponent<HeaderProps> = ({ siteTitle }) => (
         </li>
         <li>
           <Link className="menu-item" to="/">
+            Rencontres
+          </Link>
+        </li>
+        <li>
+          <Link className="menu-item" to="/">
             Evènements
           </Link>
         </li>

@@ -11,7 +11,6 @@ import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import "./layout.scss"
 import Footer from "./footer"
-import Menu from "./menu"
 
 type LayoutProps = {
   children: React.ReactNode
@@ -29,14 +28,13 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
   `)
 
   return (
-    <>
+    <div className="wrapper">
       {/* <Menu /> */}
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div>
-        <main>{children}</main>
-        <Footer />
-      </div>
-    </>
+
+      <main>{children}</main>
+      <Footer />
+    </div>
   )
 }
 

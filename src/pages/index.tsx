@@ -16,13 +16,13 @@ const IndexPage = () => {
         <div className="portefolio-container">
           <section className="last-post-container">
             <article className="recent-article main-post">
-              <img src="https://fakeimg.pl/400x400" />
+              <img src="https://fakeimg.pl/500x500" />
             </article>
 
             {/* <section className="recent-article-container"> */}
             {articles.map(a => (
               <article className="recent-article">
-                <img src="https://fakeimg.pl/400x400" />
+                <img src="https://fakeimg.pl/200x200" />
               </article>
             ))}
             {/* </section> */}

@@ -4,10 +4,13 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import "./index.scss"
 import Seo from "../components/seo"
-import { PublicationNode } from "./Home.model"
+import Image from "../components/image"
+import { PublicationNode } from "../models/home"
 
 const IndexPage = () => {
-  const data = useStaticQuery<PublicationNode>(graphql`
+  const {
+    allContentfulPublications: { edges: publications },
+  } = useStaticQuery<PublicationNode>(graphql`
     query {
       allContentfulPublications(
         sort: { fields: publicationDate, order: DESC }
@@ -18,14 +21,17 @@ const IndexPage = () => {
             title
             category
             publicationDate(formatString: "DD MMMM YYYY")
+            image {
+              file {
+                url
+              }
+            }
           }
         }
       }
     }
   `)
-  const {
-    allContentfulPublications: { edges: publications },
-  } = data
+
   return (
     <Layout>
       <Seo title="Home" />
@@ -33,13 +39,26 @@ const IndexPage = () => {
         <h1>Les dernières publications</h1>
         <section className="last-publications">
           {publications.map(
-            ({ node: { title, publicationDate, category } }, index) => (
+            (
+              {
+                node: {
+                  title,
+                  publicationDate,
+                  category,
+                  image: {
+                    file: { url },
+                  },
+                },
+              },
+              index
+            ) => (
               <article
                 className={`publication-post ${
                   index === 1 ? "main-article" : ""
                 } `}
               >
-                <img src="https://fakeimg.pl/400x400" alt="article" />
+                <img src={url} alt="article" />
+                {/* <Image /> */}
                 <div className="publication-details">
                   <h2>{title}</h2>
                   <div className="publication-infos">

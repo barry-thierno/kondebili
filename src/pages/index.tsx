@@ -22,8 +22,10 @@ const IndexPage = () => {
             category
             publicationDate(formatString: "DD MMMM YYYY")
             image {
-              file {
-                url
+              fixed(width: 800, height: 800) {
+                width
+                height
+                src
               }
             }
           }
@@ -46,7 +48,7 @@ const IndexPage = () => {
                   publicationDate,
                   category,
                   image: {
-                    file: { url },
+                    fixed: { src },
                   },
                 },
               },
@@ -57,7 +59,7 @@ const IndexPage = () => {
                   index === 1 ? "main-article" : ""
                 } `}
               >
-                <img src={url} alt="article" />
+                <img src={src} alt="article" />
                 {/* <Image /> */}
                 <div className="publication-details">
                   <h2>{title}</h2>

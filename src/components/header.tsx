@@ -28,7 +28,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({ siteTitle }) => (
         </li>
         <li>
           <Link className="menu-item" to="/">
-            Evènements
+            Rencontres
           </Link>
         </li>
       </ul>

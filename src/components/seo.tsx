@@ -17,7 +17,7 @@ type ISeoProps = {
 }
 
 function Seo(props: ISeoProps) {
-  const { description = ``, lang = `en`, meta = [], title } = props
+  const { description = ``, lang = `fr`, meta = [], title } = props
   const { site } = useStaticQuery(
     graphql`
       query {

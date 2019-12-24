@@ -10,8 +10,8 @@ export type Publication = {
     category: string
     publicationDate: string
     image: {
-      file: {
-        url: string
+      fixed: {
+        src: string
       }
     }
   }

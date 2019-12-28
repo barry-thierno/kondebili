@@ -46,6 +46,14 @@ module.exports = {
         accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
       },
     },
+    {
+      resolve: `gatsby-source-youtube-v2`,
+      options: {
+        channelId: ["UCLUtfY3y9rIfZ8AirHJ7uPg"],
+        apiKey: "AIzaSyA6U9b9HexQE3XTKkIPqV4zvGmP8zulqHI",
+        maxVideos: 4, // Defaults to 50
+      },
+    },
     // {
     //   resolve: "gatsby-plugin-react-svg",
     //   options: {

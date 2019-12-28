@@ -4,15 +4,16 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import "./index.scss"
 import Seo from "../components/seo"
-import Image from "../components/image"
-import { PublicationNode } from "../models/home"
+import { HomeDataNodes } from "../models/home"
+import { Separator } from "../components/separator/separator"
 
 const IndexPage = () => {
   const {
     allContentfulPublications: { edges: publications },
-  } = useStaticQuery<PublicationNode>(graphql`
+    allYoutubeVideo: { edges: allVideos },
+  } = useStaticQuery<HomeDataNodes>(graphql`
     query {
-      allContentfulPublications(
+      allContentfulPublications: allContentfulPublications(
         sort: { fields: publicationDate, order: DESC }
       ) {
         edges {
@@ -20,12 +21,37 @@ const IndexPage = () => {
             id
             title
             category
-            publicationDate(formatString: "DD MMMM YYYY")
+            publicationDate(formatString: "DD MMMM YYYY", locale: "fr")
             image {
               fixed(width: 800, height: 800) {
                 width
                 height
                 src
+              }
+            }
+          }
+        }
+      }
+      allYoutubeVideo: allYoutubeVideo(
+        sort: { fields: publishedAt, order: DESC }
+      ) {
+        edges {
+          node {
+            id
+            title
+            description
+            videoId
+            publishedAt(fromNow: true, locale: "fr")
+            privacyStatus
+            channelTitle
+            thumbnail {
+              url
+            }
+            localThumbnail {
+              childImageSharp {
+                fixed(width: 300, height: 200) {
+                  src
+                }
               }
             }
           }
@@ -38,7 +64,7 @@ const IndexPage = () => {
     <Layout>
       <Seo title="Home" />
       <main>
-        <h1>Les dernières publications</h1>
+        <Separator title="Les dernières publications" />
         <section className="last-publications">
           {publications.map(
             (
@@ -74,37 +100,43 @@ const IndexPage = () => {
               </article>
             )
           )}
-
-          {/* <article className="publication-post">
-            <img src="https://fakeimg.pl/400x400" alt="article" />
-          </article>
-          <article className="publication-post">
-            <img src="https://fakeimg.pl/400x400" alt="article" />
-          </article>
-          <article className="publication-post">
-            <img src="https://fakeimg.pl/400x400" alt="article" />
-          </article>
-          <article className="publication-post">
-            <img src="https://fakeimg.pl/400x400" alt="article" />
-          </article> */}
+        </section>
+        <Separator title="Nous en parlons!" />
+        <section className="last-meeting">
+          {allVideos.map(
+            ({
+              node: {
+                title,
+                publishedAt,
+                localThumbnail: {
+                  childImageSharp: {
+                    fixed: { src },
+                  },
+                },
+              },
+            }) => (
+              <article className="meeting-post">
+                <div className="meeting-post-header">
+                  <span className="material-icons">video_library</span>
+                  <div>Vidéo Youtube</div>
+                </div>
+                <img src={src} alt="article" />
+                <div className="meeting-post-details">
+                  <h2>{title}</h2>
+                  <div className="meeting-post-infos">
+                    <a href="">Voir la Publication</a>
+                    <div className="meeting-post-date">
+                      <span className="material-icons">access_time</span>
+                      <span>{publishedAt}</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            )
+          )}
         </section>
         <h1>Nos récentes rencontres</h1>
-        <section className="last-meeting">
-          <article className="meeting-post">
-            <img src="https://fakeimg.pl/300x300" alt="article" />
-          </article>
-          <article className="meeting-post">
-            <img src="https://fakeimg.pl/300x300" alt="article" />
-          </article>
-          <article className="meeting-post">
-            <img src="https://fakeimg.pl/300x300" alt="article" />
-          </article>
-          <article className="meeting-post">
-            <img src="https://fakeimg.pl/300x300" alt="article" />
-          </article>
-        </section>
       </main>
-      {/* <Image /> */}
     </Layout>
   )
 }

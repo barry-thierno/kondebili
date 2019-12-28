@@ -1,0 +1,10 @@
+.separator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .underline {
+    height: 0.3rem;
+    background-color: red;
+    width: 14rem;
+  }
+}

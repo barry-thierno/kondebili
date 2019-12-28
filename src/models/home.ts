@@ -1,7 +1,5 @@
 export type PublicationNode = {
-  allContentfulPublications: {
-    edges: Publication[]
-  }
+  edges: Publication[]
 }
 export type Publication = {
   node: {
@@ -15,4 +13,35 @@ export type Publication = {
       }
     }
   }
+}
+
+export type YoutubeVideoNode = {
+  edges: [
+    {
+      node: {
+        id: string
+        title: string
+        description: string
+        videoId: string
+        publishedAt: string
+        privacyStatus: string
+        channelTitle: string
+        thumbnail: {
+          url: string
+        }
+        localThumbnail: {
+          childImageSharp: {
+            fixed: {
+              src: string
+            }
+          }
+        }
+      }
+    }
+  ]
+}
+
+export type HomeDataNodes = {
+  allContentfulPublications: PublicationNode
+  allYoutubeVideo: YoutubeVideoNode
 }

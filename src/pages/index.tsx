@@ -135,7 +135,8 @@ const IndexPage = () => {
             )
           )}
         </section>
-        <h1>Nos récentes rencontres</h1>
+        <Separator title="Tribunes récentes" />
+        <Separator title="Dernières rencontres" />
       </main>
     </Layout>
   )

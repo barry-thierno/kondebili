@@ -1,12 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Varela+Round");
 body,
 html {
-  // width: 100%;
-  // height: 100%;
   background: #1c1d22;
   font-family: "Varela Round", sans-serif;
-  // padding: 0;
-  // margin: 0;
 }
 
 h1 {
@@ -33,6 +29,7 @@ main {
     transition: 1s;
     width: 100%;
     &:hover {
+      z-index: 0;
       transform: scale(1.05);
     }
   }
@@ -43,21 +40,43 @@ main {
     grid-column: 1/3;
     grid-row: 1/3;
   }
+  .post-type {
+    z-index: 10;
+    width: 7rem;
+    text-align: center;
+    color: white;
+    position: absolute;
+    margin: 0.3rem;
+    border-radius: 5%;
+    padding: 0.3rem;
+    &--tribune {
+      background: #d94f5c;
+      border: 1px #d94f5c solid;
+    }
+    &--publication {
+      background: #00796b;
+      border: 1px #00796b solid;
+    }
+  }
+
   .publication-details {
     margin-top: -10rem;
     padding: 0 1rem;
   }
+
   .publication-infos {
     color: #ffffff;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     .publication-category {
-      &:hover {
-        border-bottom: 1px red solid;
-      }
+      z-index: 10;
+      // &:hover {
+      //   border-bottom: 1px red solid;
+      // }
     }
     .publication-date {
+      z-index: 10;
       display: flex;
       align-items: center;
     }

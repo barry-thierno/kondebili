@@ -1,3 +1,7 @@
+export enum PublicationType {
+  TRIBUNE = "Tribune",
+  PUBLICATIION = "Publication",
+}
 export type PublicationNode = {
   edges: Publication[]
 }
@@ -6,6 +10,7 @@ export type Publication = {
     id: string
     title: string
     category: string
+    publicationType: PublicationType
     publicationDate: string
     image: {
       fixed: {

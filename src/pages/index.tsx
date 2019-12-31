@@ -4,7 +4,7 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import "./index.scss"
 import Seo from "../components/seo"
-import { HomeDataNodes } from "../models/home"
+import { HomeDataNodes, PublicationType } from "../models/home"
 import { Separator } from "../components/separator/separator"
 
 const IndexPage = () => {
@@ -21,6 +21,7 @@ const IndexPage = () => {
             id
             title
             category
+            publicationType
             publicationDate(formatString: "DD MMMM YYYY", locale: "fr")
             image {
               fixed(width: 800, height: 800) {
@@ -72,6 +73,7 @@ const IndexPage = () => {
                 node: {
                   title,
                   publicationDate,
+                  publicationType,
                   category,
                   image: {
                     fixed: { src },
@@ -82,11 +84,19 @@ const IndexPage = () => {
             ) => (
               <article
                 className={`publication-post ${
-                  index === 1 ? "main-article" : ""
+                  index === 0 ? "main-article" : ""
                 } `}
               >
+                <div
+                  className={`post-type post-type${
+                    publicationType === PublicationType.TRIBUNE
+                      ? "--tribune"
+                      : "--publication"
+                  }`}
+                >
+                  {publicationType}
+                </div>
                 <img src={src} alt="article" />
-                {/* <Image /> */}
                 <div className="publication-details">
                   <h2>{title}</h2>
                   <div className="publication-infos">
@@ -135,8 +145,8 @@ const IndexPage = () => {
             )
           )}
         </section>
-        <Separator title="Tribunes récentes" />
-        <Separator title="Dernières rencontres" />
+        {/* <Separator title="Tribunes récentes" />
+        <Separator title="Dernières rencontres" /> */}
       </main>
     </Layout>
   )

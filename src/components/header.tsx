@@ -28,7 +28,12 @@ const Header: React.FunctionComponent<HeaderProps> = ({ siteTitle }) => (
         </li>
         <li>
           <Link className="menu-item" to="/">
-            Rencontres
+            Tribunes
+          </Link>
+        </li>
+        <li>
+          <Link className="menu-item" to="/">
+            Vidéos
           </Link>
         </li>
       </ul>

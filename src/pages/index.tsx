@@ -6,6 +6,7 @@ import "./index.scss"
 import Seo from "../components/seo"
 import { HomeDataNodes, PublicationType } from "../models/home"
 import { Separator } from "../components/separator/separator"
+import { url } from "inspector"
 
 const IndexPage = () => {
   const {
@@ -83,6 +84,10 @@ const IndexPage = () => {
               index
             ) => (
               <article
+                style={{
+                  backgroundImage: `url(${src})`,
+                  backgroundSize: "cover",
+                }}
                 className={`publication-post ${
                   index === 0 ? "main-article" : ""
                 } `}
@@ -96,7 +101,7 @@ const IndexPage = () => {
                 >
                   {publicationType}
                 </div>
-                <img src={src} alt="article" />
+                {/* <img src={src} alt="article" /> */}
                 <div className="publication-details">
                   <h2>{title}</h2>
                   <div className="publication-infos">

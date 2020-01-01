@@ -20,19 +20,20 @@ main {
   margin-bottom: 5rem;
   display: inline-grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(2, 400px);
   grid-column-gap: 1.5rem;
   grid-row-gap: 1.2rem;
   &:hover {
     cursor: pointer;
   }
-  img {
-    transition: 1s;
-    width: 100%;
-    &:hover {
-      z-index: 0;
-      transform: scale(1.05);
-    }
-  }
+  // img {
+  //   transition: 1s;
+  //   width: 100%;
+  //   &:hover {
+  //     z-index: 0;
+  //     transform: scale(1.05);
+  //   }
+  // }
   h2 {
     color: #ffffff;
   }
@@ -40,8 +41,12 @@ main {
     grid-column: 1/3;
     grid-row: 1/3;
   }
+  .publication-post {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   .post-type {
-    z-index: 10;
     width: 7rem;
     text-align: center;
     color: white;
@@ -60,8 +65,13 @@ main {
   }
 
   .publication-details {
-    margin-top: -10rem;
+    height: 100%;
     padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #0000006b;
+    justify-content: flex-end;
+    padding-bottom: 0.7rem;
   }
 
   .publication-infos {
@@ -69,14 +79,13 @@ main {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    .publication-category {
-      z-index: 10;
-      // &:hover {
-      //   border-bottom: 1px red solid;
-      // }
-    }
+    // .publication-category {
+
+    //   // &:hover {
+    //   //   border-bottom: 1px red solid;
+    //   // }
+    // }
     .publication-date {
-      z-index: 10;
       display: flex;
       align-items: center;
     }
@@ -101,7 +110,6 @@ main {
     width: 6.5rem;
     justify-content: space-between;
     color: #fff;
-    // background-color: #d94f5c8a;
     padding: 0.1rem;
     font-size: 0.7rem;
     align-items: center;
@@ -139,9 +147,13 @@ main {
   }
 }
 
-@media all and (max-width: 500px) {
+@media all and (max-width: 750px) {
   .last-publications {
     display: block;
     transform: none;
+  }
+  .publication-post {
+    height: 400px;
+    margin-bottom: 0.7rem;
   }
 }

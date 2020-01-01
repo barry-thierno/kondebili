@@ -45,6 +45,10 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    transition: 1s;
+    &:hover {
+      transform: scale(1.05);
+    }
   }
   .post-type {
     width: 7rem;
@@ -79,12 +83,7 @@ main {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    // .publication-category {
 
-    //   // &:hover {
-    //   //   border-bottom: 1px red solid;
-    //   // }
-    // }
     .publication-date {
       display: flex;
       align-items: center;

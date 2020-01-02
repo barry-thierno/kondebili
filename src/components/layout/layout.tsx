@@ -8,9 +8,9 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import Header from "./header"
+import Header from "../header/header"
 import "./layout.scss"
-import Footer from "./footer"
+import Footer from "../footer/footer"
 
 type LayoutProps = {
   children: React.ReactNode

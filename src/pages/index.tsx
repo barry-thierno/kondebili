@@ -1,12 +1,11 @@
 import * as React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 
-import Layout from "../components/layout"
-import "./index.scss"
-import Seo from "../components/seo"
+import Layout from "../components/layout/layout"
+import Seo from "../components/seo/seo"
 import { HomeDataNodes, PublicationType } from "../models/home"
 import { Separator } from "../components/separator/separator"
-import { url } from "inspector"
+import "./index.scss"
 
 const IndexPage = () => {
   const {

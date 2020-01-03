@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Kondebili`,
     description: `Kondebili est un laboratoire d'idée`,
-    author: `Thierno saidou Barry`,
+    author: `Kondebili Team`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -11,6 +11,13 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `markdowns`,
+        path: `${__dirname}/src/markdowns/`,
       },
     },
     `gatsby-transformer-sharp`,
@@ -54,6 +61,7 @@ module.exports = {
         maxVideos: 4, // Defaults to 50
       },
     },
+    `gatsby-transformer-remark`,
     // {
     //   resolve: "gatsby-plugin-react-svg",
     //   options: {

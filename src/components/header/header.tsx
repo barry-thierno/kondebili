@@ -17,7 +17,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({ siteTitle }) => (
     <nav>
       <ul className="menu">
         <li>
-          <Link className="menu-item" to="/">
+          <Link className="menu-item" to="/about">
             Qui sommes nous?
           </Link>
         </li>

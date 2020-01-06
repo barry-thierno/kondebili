@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import Image from "../image"
 import "./header.scss"
 
 type HeaderProps = {
@@ -8,11 +9,12 @@ type HeaderProps = {
 
 const Header: React.FunctionComponent<HeaderProps> = ({ siteTitle }) => (
   <header>
-    <h1>
-      <Link className="site-title" to="/">
-        {siteTitle}
-      </Link>
-    </h1>
+    <Link className="site-infos" to="/">
+      <div>
+        <Image />
+      </div>
+      <h1 className="site-title">{siteTitle}</h1>
+    </Link>
 
     <nav>
       <ul className="menu">

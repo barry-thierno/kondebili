@@ -29,7 +29,6 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
 
   return (
     <div className="wrapper">
-      {/* <Menu /> */}
       <Header siteTitle={data.site.siteMetadata.title} />
 
       <main>{children}</main>

@@ -4,10 +4,17 @@ header {
   justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;
-  .site-title {
-    font-size: 2rem;
-    color: #d94f5c;
-    font-weight: bolder;
+
+  .site-infos {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    .site-title {
+      margin-left: 1rem;
+      font-size: 1.7rem;
+      color: #d94f5c;
+      font-weight: bolder;
+    }
   }
   nav {
     flex: 0 1 40%;

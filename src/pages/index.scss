@@ -23,9 +23,9 @@ main {
   grid-template-rows: repeat(2, 400px);
   grid-column-gap: 1.5rem;
   grid-row-gap: 1.2rem;
-  &:hover {
-    cursor: pointer;
-  }
+  // &:hover {
+  //   cursor: pointer;
+  // }
 
   h2 {
     color: #ffffff;
@@ -39,6 +39,7 @@ main {
     flex-direction: column;
     justify-content: space-between;
     transition: 1s;
+    text-decoration: none;
     &:hover {
       transform: scale(1.05);
     }

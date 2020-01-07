@@ -71,6 +71,7 @@ const IndexPage = () => {
             (
               {
                 node: {
+                  id,
                   title,
                   publicationDate,
                   publicationType,
@@ -82,7 +83,7 @@ const IndexPage = () => {
               },
               index
             ) => (
-              <article
+              <Link
                 style={{
                   backgroundImage: `url(${src})`,
                   backgroundSize: "cover",
@@ -90,7 +91,9 @@ const IndexPage = () => {
                 className={`publication-post ${
                   index === 0 ? "main-article" : ""
                 } `}
+                to={`/post/${id}`}
               >
+                {/* <article> */}
                 <div
                   className={`post-type post-type${
                     publicationType === PublicationType.TRIBUNE
@@ -111,7 +114,8 @@ const IndexPage = () => {
                     </div>
                   </div>
                 </div>
-              </article>
+                {/* </article> */}
+              </Link>
             )
           )}
         </section>

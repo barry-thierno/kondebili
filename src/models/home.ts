@@ -21,8 +21,3 @@ export type Publication = {
     }
   }
 }
-
-export type HomeDataNodes = {
-  allContentfulPublications: PublicationNode
-  allYoutubeVideo: YoutubeVideoNode
-}

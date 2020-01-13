@@ -3,10 +3,16 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/layout/layout"
 import Seo from "../components/seo/seo"
-import { HomeDataNodes, PublicationType } from "../models/home"
+import { PublicationType, PublicationNode } from "../models/home"
 import { Separator } from "../components/separator/separator"
 import "./index.scss"
 import YoutubeVideoCard from "../components/youtubeVideoCard/youtubeVideoCard"
+import { YoutubeVideoNode } from "../components/youtubeVideoCard/youtubeVideoCard.model"
+
+export type HomeDataNodes = {
+  allContentfulPublications: PublicationNode
+  allYoutubeVideo: YoutubeVideoNode
+}
 
 const IndexPage = () => {
   const {

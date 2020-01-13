@@ -127,7 +127,7 @@ const IndexPage = () => {
           )}
         </section>
         <Separator title="Nous en parlons!" />
-        <section className="last-meeting">
+        <section className="last-videos">
           {allVideos.map(video => (
             <YoutubeVideoCard {...video.node} />
           ))}

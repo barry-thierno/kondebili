@@ -6,6 +6,7 @@ import Seo from "../components/seo/seo"
 import { HomeDataNodes, PublicationType } from "../models/home"
 import { Separator } from "../components/separator/separator"
 import "./index.scss"
+import YoutubeVideoCard from "../components/youtubeVideoCard/youtubeVideoCard"
 
 const IndexPage = () => {
   const {
@@ -121,37 +122,9 @@ const IndexPage = () => {
         </section>
         <Separator title="Nous en parlons!" />
         <section className="last-meeting">
-          {allVideos.map(
-            ({
-              node: {
-                title,
-                publishedAt,
-                localThumbnail: {
-                  childImageSharp: {
-                    fixed: { src },
-                  },
-                },
-              },
-            }) => (
-              <article className="meeting-post">
-                <div className="meeting-post-header">
-                  <span className="material-icons">video_library</span>
-                  <div>Vidéo Youtube</div>
-                </div>
-                <img src={src} alt="article" />
-                <div className="meeting-post-details">
-                  <h2>{title}</h2>
-                  <div className="meeting-post-infos">
-                    <a href="">Voir la Publication</a>
-                    <div className="meeting-post-date">
-                      <span className="material-icons">access_time</span>
-                      <span>{publishedAt}</span>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            )
-          )}
+          {allVideos.map(video => (
+            <YoutubeVideoCard {...video.node} />
+          ))}
         </section>
         {/* <Separator title="Tribunes récentes" />
         <Separator title="Dernières rencontres" /> */}

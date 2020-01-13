@@ -1,3 +1,5 @@
+import { YoutubeVideoNode } from "../components/youtubeVideoCard/youtubeVideoCard.model"
+
 export enum PublicationType {
   TRIBUNE = "Tribune",
   PUBLICATIION = "Publication",
@@ -18,32 +20,6 @@ export type Publication = {
       }
     }
   }
-}
-
-export type YoutubeVideoNode = {
-  edges: [
-    {
-      node: {
-        id: string
-        title: string
-        description: string
-        videoId: string
-        publishedAt: string
-        privacyStatus: string
-        channelTitle: string
-        thumbnail: {
-          url: string
-        }
-        localThumbnail: {
-          childImageSharp: {
-            fixed: {
-              src: string
-            }
-          }
-        }
-      }
-    }
-  ]
 }
 
 export type HomeDataNodes = {

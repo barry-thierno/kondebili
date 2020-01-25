@@ -1,9 +1,11 @@
 import * as React from "react"
+import { Input } from "antd"
 import Layout from "../components/layout/layout"
 import Seo from "../components/seo/seo"
 import { YoutubeVideoNode } from "../components/youtubeVideoCard/youtubeVideoCard.model"
 import { useStaticQuery, graphql } from "gatsby"
 import YoutubeVideoCard from "../components/youtubeVideoCard/youtubeVideoCard"
+
 import "./videos.scss"
 
 type AllYoutubeVideo = {
@@ -49,21 +51,35 @@ const Videos = () => {
     "Société",
     "Education",
   ]
+  //   const { Search } = Input
   return (
     <Layout>
       <Seo title="Vidéos" />
-      <section className="filters">
-        {tags.map(tag => (
-          <button className="filter-category">
-            <div className="name">{tag}</div>
-          </button>
-        ))}
-      </section>
-      <section className="videos">
-        {allVideos.map(video => (
-          <YoutubeVideoCard {...video.node} />
-        ))}
-      </section>
+      <div className="filter-container">
+        <div className="filter-input">
+          <h1>Rechercher une vidéo</h1>
+          {/* <Search
+            placeholder="rechercher une vidéo"
+            enterButton="Rechercher"
+            size="large"
+            onSearch={value => console.log(value)}
+          /> */}
+        </div>
+        <section className="filters">
+          {tags.map(tag => (
+            <button className="filter-category">
+              <div className="name">{tag}</div>
+            </button>
+          ))}
+        </section>
+      </div>
+      <div className="video-container">
+        <section className="videos">
+          {allVideos.map(video => (
+            <YoutubeVideoCard {...video.node} />
+          ))}
+        </section>
+      </div>
     </Layout>
   )
 }

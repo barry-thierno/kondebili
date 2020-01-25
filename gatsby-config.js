@@ -58,10 +58,11 @@ module.exports = {
       options: {
         channelId: [process.env.YOUTUBE_CHANNEL_ID],
         apiKey: process.env.YOUTUBE_API_KEY,
-        maxVideos: 4, // Defaults to 50
+        maxVideos: 10, // Defaults to 50
       },
     },
     `gatsby-transformer-remark`,
+    `gatsby-plugin-antd`,
     // {
     //   resolve: "gatsby-plugin-react-svg",
     //   options: {

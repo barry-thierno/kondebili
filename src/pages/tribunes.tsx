@@ -1,40 +1,35 @@
 import * as React from "react"
 import Layout from "../components/layout/layout"
 import Seo from "../components/seo/seo"
-import { YoutubeVideoNode } from "../components/youtubeVideoCard/youtubeVideoCard.model"
 import { useStaticQuery, graphql } from "gatsby"
-import YoutubeVideoCard from "../components/youtubeVideoCard/youtubeVideoCard"
 
-import "./videos.scss"
+import "./tribunes.scss"
+import { PublicationEdges } from "../components/publicationCard/publicationCard.model"
+import PublicationCard from "../components/publicationCard/publicationCard"
 
 type AllYoutubeVideo = {
-  allYoutubeVideo: YoutubeVideoNode
+  allContentfulPublications: PublicationEdges
 }
 const Tribunes = () => {
   const {
-    allYoutubeVideo: { edges: allVideos },
+    allContentfulPublications: { edges: allPublications },
   } = useStaticQuery<AllYoutubeVideo>(graphql`
     query {
-      allYoutubeVideo: allYoutubeVideo(
-        sort: { fields: publishedAt, order: DESC }
+      allContentfulPublications: allContentfulPublications(
+        sort: { fields: publicationDate, order: DESC }
       ) {
         edges {
           node {
             id
             title
-            description
-            videoId
-            publishedAt(fromNow: true, locale: "fr")
-            privacyStatus
-            channelTitle
-            thumbnail {
-              url
-            }
-            localThumbnail {
-              childImageSharp {
-                fixed(width: 300, height: 200) {
-                  src
-                }
+            category
+            publicationType
+            publicationDate(formatString: "DD MMMM YYYY", locale: "fr")
+            image {
+              fixed(width: 800, height: 800) {
+                width
+                height
+                src
               }
             }
           }
@@ -55,7 +50,7 @@ const Tribunes = () => {
       <Seo title="Vidéos" />
       <div className="filter-container">
         <div className="filter-input">
-          <h1>Rechercher une vidéo</h1>
+          <h1>Rechercher une publication</h1>
         </div>
         <section className="filters">
           {tags.map(tag => (
@@ -65,10 +60,10 @@ const Tribunes = () => {
           ))}
         </section>
       </div>
-      <div className="video-container">
-        <section className="videos">
-          {allVideos.map(video => (
-            <YoutubeVideoCard {...video.node} />
+      <div className="tribunes-container">
+        <section className="tribunes">
+          {allPublications.map(({ node }) => (
+            <PublicationCard {...node} />
           ))}
         </section>
       </div>

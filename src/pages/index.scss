@@ -10,10 +10,10 @@ h1 {
   text-align: center;
   font-size: 3rem;
 }
-main {
+.home-container {
   // display: grid;
   justify-content: center;
-  padding: 1rem;
+  padding: 3rem;
 }
 .last-publications {
   margin-top: 3rem;
@@ -35,7 +35,11 @@ main {
     width: 100%;
   }
 }
+
 @media all and (max-width: 750px) {
+  .home-container {
+    padding: 1.5rem;
+  }
   .last-publications {
     display: block;
     transform: none;

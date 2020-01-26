@@ -72,7 +72,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <Seo title="Home" />
-      <main>
+      <div className="home-container">
         <Separator title="Les dernières publications" />
         <section className="last-publications">
           {publications.map(({ node }, index) => (
@@ -87,7 +87,7 @@ const IndexPage = () => {
         </section>
         {/* <Separator title="Tribunes récentes" />
         <Separator title="Dernières rencontres" /> */}
-      </main>
+      </div>
     </Layout>
   )
 }

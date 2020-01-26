@@ -101,21 +101,19 @@ export default function Post(props: PostProps) {
         <div className="post-container">
           <div className="post-body">
             <Img fixed={fixed} loading="eager" />
-            <div className="publication-details">
+            <div className="post-details">
               <div>
                 <div className="category">{`${publicationType.toUpperCase()} / ${category.toUpperCase()}`}</div>
                 <div className="underline"></div>
               </div>
-              <div className="publication-date">{publicationDate}</div>
+              <div className="post-date">{publicationDate}</div>
             </div>
-            <div className="publication-title">
+            <div className="post-title">
               <div className="vertical-line"></div>
               <h1>{title}</h1>
             </div>
 
-            <div className="publication-body">
-              {documentToReactComponents(json)}
-            </div>
+            <div className="post-body">{documentToReactComponents(json)}</div>
           </div>
           <div className="suggestions">
             <SideHeader title="Auteur" />

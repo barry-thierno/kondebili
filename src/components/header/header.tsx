@@ -29,7 +29,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({ siteTitle }) => (
           </Link>
         </li>
         <li>
-          <Link className="menu-item" to="/">
+          <Link className="menu-item" to="/tribunes">
             Tribunes
           </Link>
         </li>

@@ -3,14 +3,15 @@ import { Link, useStaticQuery, graphql } from "gatsby"
 
 import Layout from "../components/layout/layout"
 import Seo from "../components/seo/seo"
-import { PublicationType, PublicationNode } from "../models/home"
 import { Separator } from "../components/separator/separator"
 import "./index.scss"
 import YoutubeVideoCard from "../components/youtubeVideoCard/youtubeVideoCard"
 import { YoutubeVideoNode } from "../components/youtubeVideoCard/youtubeVideoCard.model"
+import { PublicationEdges } from "../components/publicationCard/publicationCard.model"
+import PublicationCard from "../components/publicationCard/publicationCard"
 
 export type HomeDataNodes = {
-  allContentfulPublications: PublicationNode
+  allContentfulPublications: PublicationEdges
   allYoutubeVideo: YoutubeVideoNode
 }
 
@@ -74,57 +75,9 @@ const IndexPage = () => {
       <main>
         <Separator title="Les dernières publications" />
         <section className="last-publications">
-          {publications.map(
-            (
-              {
-                node: {
-                  id,
-                  title,
-                  publicationDate,
-                  publicationType,
-                  category,
-                  image: {
-                    fixed: { src },
-                  },
-                },
-              },
-              index
-            ) => (
-              <Link
-                style={{
-                  backgroundImage: `url(${src})`,
-                  backgroundSize: "cover",
-                }}
-                className={`publication-post ${
-                  index === 0 ? "main-article" : ""
-                } `}
-                to={`/post/${id}`}
-              >
-                {/* <article> */}
-                <div
-                  className={`post-type post-type${
-                    publicationType === PublicationType.TRIBUNE
-                      ? "--tribune"
-                      : "--publication"
-                  }`}
-                >
-                  {publicationType}
-                </div>
-                {/* <img src={src} alt="article" /> */}
-                <div className="publication-details">
-                  <h2>{title}</h2>
-                  <div className="publication-infos">
-                    <div className="publication-category">{category}</div>
-                    <div className="publication-date">
-                      <span className="material-icons">access_time</span>
-                      <span>{publicationDate}</span>
-                    </div>
-                  </div>
-                </div>
-                {/* </article> */}
-              </Link>
-            )
-          )}
+          {publications.map(({ node }, index) => (
+            <PublicationCard {...node} isMainPublication={index === 0} />
+          ))}
         </section>
         <Separator title="Nous en parlons!" />
         <section className="last-videos">

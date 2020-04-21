@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Input } from "antd"
 import Layout from "../components/layout/layout"
 import Seo from "../components/seo/seo"
 import { YoutubeVideoNode } from "../components/youtubeVideoCard/youtubeVideoCard.model"
@@ -51,19 +50,16 @@ const Videos = () => {
     "Société",
     "Education",
   ]
-  //   const { Search } = Input
   return (
     <Layout>
       <Seo title="Vidéos" />
       <div className="filter-container">
         <div className="filter-input">
           <h1>Rechercher une vidéo</h1>
-          {/* <Search
-            placeholder="rechercher une vidéo"
-            enterButton="Rechercher"
-            size="large"
-            onSearch={value => console.log(value)}
-          /> */}
+          {/* <div className="search-input">
+            <input placeholder="rechercher une vidéo" type="text" />
+            <button className="search-btn">Rechercher</button>
+          </div> */}
         </div>
         <section className="filters">
           {tags.map(tag => (

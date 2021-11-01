@@ -11,37 +11,37 @@ type AllYoutubeVideo = {
   allYoutubeVideo: YoutubeVideoNode
 }
 const Videos = () => {
-  const {
-    allYoutubeVideo: { edges: allVideos },
-  } = useStaticQuery<AllYoutubeVideo>(graphql`
-    query {
-      allYoutubeVideo: allYoutubeVideo(
-        sort: { fields: publishedAt, order: DESC }
-      ) {
-        edges {
-          node {
-            id
-            title
-            description
-            videoId
-            publishedAt(fromNow: true, locale: "fr")
-            privacyStatus
-            channelTitle
-            thumbnail {
-              url
-            }
-            localThumbnail {
-              childImageSharp {
-                fixed(width: 300, height: 200) {
-                  src
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
+  // const {
+  //   allYoutubeVideo: { edges: allVideos },
+  // } = useStaticQuery<AllYoutubeVideo>(graphql`
+  //   query {
+  //     allYoutubeVideo: allYoutubeVideo(
+  //       sort: { fields: publishedAt, order: DESC }
+  //     ) {
+  //       edges {
+  //         node {
+  //           id
+  //           title
+  //           description
+  //           videoId
+  //           publishedAt(fromNow: true, locale: "fr")
+  //           privacyStatus
+  //           channelTitle
+  //           thumbnail {
+  //             url
+  //           }
+  //           localThumbnail {
+  //             childImageSharp {
+  //               fixed(width: 300, height: 200) {
+  //                 src
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // `)
   const tags = [
     "+ Récentes",
     "Politique",
@@ -71,9 +71,9 @@ const Videos = () => {
       </div>
       <div className="video-container">
         <section className="videos">
-          {allVideos.map(video => (
+          {/* {allVideos.map(video => (
             <YoutubeVideoCard {...video.node} />
-          ))}
+          ))} */}
         </section>
       </div>
     </Layout>

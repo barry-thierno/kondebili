@@ -17,7 +17,7 @@ type LayoutProps = {
 }
 
 const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
-  const data = useStaticQuery(graphql`
+  const data = useStaticQuery<GatsbyTypes.SiteTitleQueryQuery>(graphql`
     query SiteTitleQuery {
       site {
         siteMetadata {

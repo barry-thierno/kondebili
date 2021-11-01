@@ -11,13 +11,13 @@ import { YoutubeVideoNode } from "../components/youtubeVideoCard/youtubeVideoCar
 
 export type HomeDataNodes = {
   allContentfulPublications: PublicationNode
-  allYoutubeVideo: YoutubeVideoNode
+  // allYoutubeVideo: YoutubeVideoNode
 }
 
 const IndexPage = () => {
   const {
     allContentfulPublications: { edges: publications },
-    allYoutubeVideo: { edges: allVideos },
+    // allYoutubeVideo: { edges: allVideos },
   } = useStaticQuery<HomeDataNodes>(graphql`
     query {
       allContentfulPublications: allContentfulPublications(
@@ -40,31 +40,7 @@ const IndexPage = () => {
           }
         }
       }
-      allYoutubeVideo: allYoutubeVideo(
-        sort: { fields: publishedAt, order: DESC }
-      ) {
-        edges {
-          node {
-            id
-            title
-            description
-            videoId
-            publishedAt(fromNow: true, locale: "fr")
-            privacyStatus
-            channelTitle
-            thumbnail {
-              url
-            }
-            localThumbnail {
-              childImageSharp {
-                fixed(width: 300, height: 200) {
-                  src
-                }
-              }
-            }
-          }
-        }
-      }
+
     }
   `)
 
@@ -95,18 +71,16 @@ const IndexPage = () => {
                   backgroundImage: `url(${src})`,
                   backgroundSize: "cover",
                 }}
-                className={`publication-post ${
-                  index === 0 ? "main-article" : ""
-                } `}
+                className={`publication-post ${index === 0 ? "main-article" : ""
+                  } `}
                 to={`/post/${id}`}
               >
                 {/* <article> */}
                 <div
-                  className={`post-type post-type${
-                    publicationType === PublicationType.TRIBUNE
+                  className={`post-type post-type${publicationType === PublicationType.TRIBUNE
                       ? "--tribune"
                       : "--publication"
-                  }`}
+                    }`}
                 >
                   {publicationType}
                 </div>
@@ -128,9 +102,9 @@ const IndexPage = () => {
         </section>
         <Separator title="Nous en parlons!" />
         <section className="last-videos">
-          {allVideos.slice(0, 4).map(video => (
+          {/* {allVideos.slice(0, 4).map(video => (
             <YoutubeVideoCard {...video.node} />
-          ))}
+          ))} */}
         </section>
         {/* <Separator title="Tribunes récentes" />
         <Separator title="Dernières rencontres" /> */}

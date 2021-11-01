@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
-import Image from "../image"
 import "./header.scss"
+import { StaticImage } from "gatsby-plugin-image"
 
 type HeaderProps = {
   siteTitle: string
@@ -11,7 +11,8 @@ const Header: React.FunctionComponent<HeaderProps> = ({ siteTitle }) => (
   <header>
     <Link className="site-infos" to="/">
       <div>
-        <Image />
+      <StaticImage alt="logo" loading="eager" src="../../images/kondebili-icon.png" layout="fixed"  placeholder="blurred"   width={40}
+      height={40}/>
       </div>
       <h1 className="site-title">{siteTitle}</h1>
     </Link>

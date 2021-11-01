@@ -5,22 +5,41 @@ module.exports = {
     author: `Kondebili Team`,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: "gatsby-source-contentful",
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        accessToken: "17Y6LMfxz4gRiLbRPuJGC635d8fiseoXGYvhRGd3FGk",
+        spaceId: "2tbrehkpzhpx",
       },
     },
+    `gatsby-plugin-sass`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-google-fonts`,
       options: {
-        name: `markdowns`,
-        path: `${__dirname}/src/markdowns/`,
+        fonts: [
+          `material icons`,
+          `Varela Round:300,400,400,700`, // you can also specify font weights and styles
+        ],
+        display: "swap",
       },
     },
-    `gatsby-transformer-sharp`,
+    "gatsby-plugin-image",
+    // {
+    //   resolve: "gatsby-plugin-google-analytics",
+    //   options: {
+    //     trackingId: "",
+    //   },
+    // },
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sitemap",
+    {
+      resolve: "gatsby-plugin-manifest",
+      options: {
+        icon: "src/images/kondebili-icon.png",
+      },
+    },
+    "gatsby-transformer-remark",
+    "gatsby-plugin-mdx",
     `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
@@ -34,45 +53,35 @@ module.exports = {
         icon: `src/images/kondebili-icon.png`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-plugin-typescript`,
-    `gatsby-plugin-sass`,
+    "gatsby-transformer-sharp",
     {
-      resolve: `gatsby-plugin-google-fonts`,
+      resolve: "gatsby-source-filesystem",
       options: {
-        fonts: [
-          `material icons`,
-          `Varela Round:300,400,400,700`, // you can also specify font weights and styles
-        ],
-        display: "swap",
+        name: "images",
+        path: `${__dirname}/src/images`,
       },
+      __key: "images",
     },
     {
-      resolve: `gatsby-source-contentful`,
+      resolve: "gatsby-source-filesystem",
       options: {
-        spaceId: process.env.CONTENTFULL_SPACE_ID,
-        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        name: "pages",
+        path: `${__dirname}/src/images`,
       },
+      __key: "pages",
     },
     {
-      resolve: `gatsby-source-youtube-v2`,
+      resolve: `gatsby-source-filesystem`,
       options: {
-        channelId: [process.env.YOUTUBE_CHANNEL_ID],
-        apiKey: process.env.YOUTUBE_API_KEY,
-        maxVideos: 10, // Defaults to 50
+        name: `markdowns`,
+        path: `${__dirname}/src/markdowns/`,
       },
     },
-    `gatsby-transformer-remark`,
-    `gatsby-plugin-antd`,
-    // {
-    //   resolve: "gatsby-plugin-react-svg",
-    //   options: {
-    //     rule: {
-    //       include: /\.inline\.svg$/,
-    //     },
-    //   },
-    // },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    { 
+      resolve: `gatsby-plugin-typegen`,
+      options: {
+        outputPath: `src/__generated__/gatsby-types.d.ts`,
+      }
+    }
   ],
-}
+};

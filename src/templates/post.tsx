@@ -1,11 +1,9 @@
 import * as React from "react"
 import Layout from "../components/layout/layout"
-import Seo from "../components/seo/seo"
 import { graphql } from "gatsby"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import "./post.scss"
-import { FixedObject, FluidObject } from "gatsby-image"
-import Img from "gatsby-image"
+import { GatsbyImage, IGatsbyImageData, getImage} from "gatsby-plugin-image"
 import SideHeader from "../components/sideHeader/sideHeader"
 
 export type PostProps = {
@@ -18,18 +16,13 @@ export type PostProps = {
       author: {
         name: string
         photo: {
-          fixed: FixedObject
+          fixed: GatsbyTypes.ContentfulFixed
+          
         }
         description: string
       }
-      image: {
-        fixed: FixedObject
-        fluid: FluidObject
-        childImageSharp: { fixed: FixedObject }
-      }
-      body: {
-        json: any
-      }
+      image: IGatsbyImageData
+      body: GatsbyTypes.ContentfulPublicationsBody
     }
   }
 }
@@ -48,29 +41,15 @@ export const query = graphql`
             width
             height
             src
-            tracedSVG
-            base64
-            aspectRatio
-            srcSet
-            srcWebp
           }
         }
         description
       }
       image {
-        fixed(width: 1024, height: 400) {
-          width
-          height
-          src
-          tracedSVG
-          base64
-          aspectRatio
-          srcSet
-          srcWebp
-        }
+        gatsbyImageData(width: 1200, placeholder: TRACED_SVG)
       }
       body {
-        json
+        raw
       }
     }
   }
@@ -88,19 +67,18 @@ export default function Post(props: PostProps) {
           photo: { fixed: authorPhoto },
           description,
         },
-        image: { fixed, fluid },
-
-        body: { json },
+        image,
+        body,
       },
     },
   } = props
-
+  const imageData = getImage(image)
   return (
     <Layout>
       <div className="post-wrapper">
         <div className="post-container">
           <div className="post-body">
-            <Img fixed={fixed} loading="eager" />
+            <GatsbyImage alt="post-image" image={imageData} />
             <div className="publication-details">
               <div>
                 <div className="category">{`${publicationType.toUpperCase()} / ${category.toUpperCase()}`}</div>
@@ -114,7 +92,7 @@ export default function Post(props: PostProps) {
             </div>
 
             <div className="publication-body">
-              {documentToReactComponents(json)}
+              {documentToReactComponents(JSON.parse(body.raw))}
             </div>
           </div>
           <div className="suggestions">

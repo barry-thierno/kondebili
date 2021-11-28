@@ -1111,6 +1111,64 @@ type ImageSharpResize = {
   readonly originalName: Maybe<Scalars['String']>;
 };
 
+type YoutubeVideo = Node & {
+  readonly id: Scalars['ID'];
+  readonly parent: Maybe<Node>;
+  readonly children: ReadonlyArray<Node>;
+  readonly internal: Internal;
+  readonly publishedAt: Maybe<Scalars['Date']>;
+  readonly channelId: Maybe<Scalars['String']>;
+  readonly title: Maybe<Scalars['String']>;
+  readonly description: Maybe<Scalars['String']>;
+  readonly thumbnails: Maybe<YoutubeVideoThumbnails>;
+  readonly channelTitle: Maybe<Scalars['String']>;
+  readonly liveBroadcastContent: Maybe<Scalars['String']>;
+  readonly publishTime: Maybe<Scalars['Date']>;
+  readonly videoId: Maybe<Scalars['String']>;
+  readonly watchUrl: Maybe<Scalars['String']>;
+  readonly tags: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+};
+
+
+type YoutubeVideo_publishedAtArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+
+type YoutubeVideo_publishTimeArgs = {
+  formatString: Maybe<Scalars['String']>;
+  fromNow: Maybe<Scalars['Boolean']>;
+  difference: Maybe<Scalars['String']>;
+  locale: Maybe<Scalars['String']>;
+};
+
+type YoutubeVideoThumbnails = {
+  readonly default: Maybe<YoutubeVideoThumbnailsDefault>;
+  readonly medium: Maybe<YoutubeVideoThumbnailsMedium>;
+  readonly high: Maybe<YoutubeVideoThumbnailsHigh>;
+};
+
+type YoutubeVideoThumbnailsDefault = {
+  readonly url: Maybe<Scalars['String']>;
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
+type YoutubeVideoThumbnailsMedium = {
+  readonly url: Maybe<Scalars['String']>;
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
+type YoutubeVideoThumbnailsHigh = {
+  readonly url: Maybe<Scalars['String']>;
+  readonly width: Maybe<Scalars['Int']>;
+  readonly height: Maybe<Scalars['Int']>;
+};
+
 type ContentfulContentType = Node & {
   readonly id: Scalars['ID'];
   readonly parent: Maybe<Node>;
@@ -1157,6 +1215,8 @@ type Query = {
   readonly allMdx: MdxConnection;
   readonly imageSharp: Maybe<ImageSharp>;
   readonly allImageSharp: ImageSharpConnection;
+  readonly youtubeVideo: Maybe<YoutubeVideo>;
+  readonly allYoutubeVideo: YoutubeVideoConnection;
   readonly contentfulContentType: Maybe<ContentfulContentType>;
   readonly allContentfulContentType: ContentfulContentTypeConnection;
 };
@@ -1572,6 +1632,33 @@ type Query_imageSharpArgs = {
 type Query_allImageSharpArgs = {
   filter: Maybe<ImageSharpFilterInput>;
   sort: Maybe<ImageSharpSortInput>;
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+};
+
+
+type Query_youtubeVideoArgs = {
+  id: Maybe<StringQueryOperatorInput>;
+  parent: Maybe<NodeFilterInput>;
+  children: Maybe<NodeFilterListInput>;
+  internal: Maybe<InternalFilterInput>;
+  publishedAt: Maybe<DateQueryOperatorInput>;
+  channelId: Maybe<StringQueryOperatorInput>;
+  title: Maybe<StringQueryOperatorInput>;
+  description: Maybe<StringQueryOperatorInput>;
+  thumbnails: Maybe<YoutubeVideoThumbnailsFilterInput>;
+  channelTitle: Maybe<StringQueryOperatorInput>;
+  liveBroadcastContent: Maybe<StringQueryOperatorInput>;
+  publishTime: Maybe<DateQueryOperatorInput>;
+  videoId: Maybe<StringQueryOperatorInput>;
+  watchUrl: Maybe<StringQueryOperatorInput>;
+  tags: Maybe<StringQueryOperatorInput>;
+};
+
+
+type Query_allYoutubeVideoArgs = {
+  filter: Maybe<YoutubeVideoFilterInput>;
+  sort: Maybe<YoutubeVideoSortInput>;
   skip: Maybe<Scalars['Int']>;
   limit: Maybe<Scalars['Int']>;
 };
@@ -5918,6 +6005,246 @@ type ImageSharpSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type YoutubeVideoThumbnailsFilterInput = {
+  readonly default: Maybe<YoutubeVideoThumbnailsDefaultFilterInput>;
+  readonly medium: Maybe<YoutubeVideoThumbnailsMediumFilterInput>;
+  readonly high: Maybe<YoutubeVideoThumbnailsHighFilterInput>;
+};
+
+type YoutubeVideoThumbnailsDefaultFilterInput = {
+  readonly url: Maybe<StringQueryOperatorInput>;
+  readonly width: Maybe<IntQueryOperatorInput>;
+  readonly height: Maybe<IntQueryOperatorInput>;
+};
+
+type YoutubeVideoThumbnailsMediumFilterInput = {
+  readonly url: Maybe<StringQueryOperatorInput>;
+  readonly width: Maybe<IntQueryOperatorInput>;
+  readonly height: Maybe<IntQueryOperatorInput>;
+};
+
+type YoutubeVideoThumbnailsHighFilterInput = {
+  readonly url: Maybe<StringQueryOperatorInput>;
+  readonly width: Maybe<IntQueryOperatorInput>;
+  readonly height: Maybe<IntQueryOperatorInput>;
+};
+
+type YoutubeVideoConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<YoutubeVideoEdge>;
+  readonly nodes: ReadonlyArray<YoutubeVideo>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly group: ReadonlyArray<YoutubeVideoGroupConnection>;
+};
+
+
+type YoutubeVideoConnection_distinctArgs = {
+  field: YoutubeVideoFieldsEnum;
+};
+
+
+type YoutubeVideoConnection_maxArgs = {
+  field: YoutubeVideoFieldsEnum;
+};
+
+
+type YoutubeVideoConnection_minArgs = {
+  field: YoutubeVideoFieldsEnum;
+};
+
+
+type YoutubeVideoConnection_sumArgs = {
+  field: YoutubeVideoFieldsEnum;
+};
+
+
+type YoutubeVideoConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: YoutubeVideoFieldsEnum;
+};
+
+type YoutubeVideoEdge = {
+  readonly next: Maybe<YoutubeVideo>;
+  readonly node: YoutubeVideo;
+  readonly previous: Maybe<YoutubeVideo>;
+};
+
+type YoutubeVideoFieldsEnum =
+  | 'id'
+  | 'parent.id'
+  | 'parent.parent.id'
+  | 'parent.parent.parent.id'
+  | 'parent.parent.parent.children'
+  | 'parent.parent.children'
+  | 'parent.parent.children.id'
+  | 'parent.parent.children.children'
+  | 'parent.parent.internal.content'
+  | 'parent.parent.internal.contentDigest'
+  | 'parent.parent.internal.description'
+  | 'parent.parent.internal.fieldOwners'
+  | 'parent.parent.internal.ignoreType'
+  | 'parent.parent.internal.mediaType'
+  | 'parent.parent.internal.owner'
+  | 'parent.parent.internal.type'
+  | 'parent.children'
+  | 'parent.children.id'
+  | 'parent.children.parent.id'
+  | 'parent.children.parent.children'
+  | 'parent.children.children'
+  | 'parent.children.children.id'
+  | 'parent.children.children.children'
+  | 'parent.children.internal.content'
+  | 'parent.children.internal.contentDigest'
+  | 'parent.children.internal.description'
+  | 'parent.children.internal.fieldOwners'
+  | 'parent.children.internal.ignoreType'
+  | 'parent.children.internal.mediaType'
+  | 'parent.children.internal.owner'
+  | 'parent.children.internal.type'
+  | 'parent.internal.content'
+  | 'parent.internal.contentDigest'
+  | 'parent.internal.description'
+  | 'parent.internal.fieldOwners'
+  | 'parent.internal.ignoreType'
+  | 'parent.internal.mediaType'
+  | 'parent.internal.owner'
+  | 'parent.internal.type'
+  | 'children'
+  | 'children.id'
+  | 'children.parent.id'
+  | 'children.parent.parent.id'
+  | 'children.parent.parent.children'
+  | 'children.parent.children'
+  | 'children.parent.children.id'
+  | 'children.parent.children.children'
+  | 'children.parent.internal.content'
+  | 'children.parent.internal.contentDigest'
+  | 'children.parent.internal.description'
+  | 'children.parent.internal.fieldOwners'
+  | 'children.parent.internal.ignoreType'
+  | 'children.parent.internal.mediaType'
+  | 'children.parent.internal.owner'
+  | 'children.parent.internal.type'
+  | 'children.children'
+  | 'children.children.id'
+  | 'children.children.parent.id'
+  | 'children.children.parent.children'
+  | 'children.children.children'
+  | 'children.children.children.id'
+  | 'children.children.children.children'
+  | 'children.children.internal.content'
+  | 'children.children.internal.contentDigest'
+  | 'children.children.internal.description'
+  | 'children.children.internal.fieldOwners'
+  | 'children.children.internal.ignoreType'
+  | 'children.children.internal.mediaType'
+  | 'children.children.internal.owner'
+  | 'children.children.internal.type'
+  | 'children.internal.content'
+  | 'children.internal.contentDigest'
+  | 'children.internal.description'
+  | 'children.internal.fieldOwners'
+  | 'children.internal.ignoreType'
+  | 'children.internal.mediaType'
+  | 'children.internal.owner'
+  | 'children.internal.type'
+  | 'internal.content'
+  | 'internal.contentDigest'
+  | 'internal.description'
+  | 'internal.fieldOwners'
+  | 'internal.ignoreType'
+  | 'internal.mediaType'
+  | 'internal.owner'
+  | 'internal.type'
+  | 'publishedAt'
+  | 'channelId'
+  | 'title'
+  | 'description'
+  | 'thumbnails.default.url'
+  | 'thumbnails.default.width'
+  | 'thumbnails.default.height'
+  | 'thumbnails.medium.url'
+  | 'thumbnails.medium.width'
+  | 'thumbnails.medium.height'
+  | 'thumbnails.high.url'
+  | 'thumbnails.high.width'
+  | 'thumbnails.high.height'
+  | 'channelTitle'
+  | 'liveBroadcastContent'
+  | 'publishTime'
+  | 'videoId'
+  | 'watchUrl'
+  | 'tags';
+
+type YoutubeVideoGroupConnection = {
+  readonly totalCount: Scalars['Int'];
+  readonly edges: ReadonlyArray<YoutubeVideoEdge>;
+  readonly nodes: ReadonlyArray<YoutubeVideo>;
+  readonly pageInfo: PageInfo;
+  readonly distinct: ReadonlyArray<Scalars['String']>;
+  readonly max: Maybe<Scalars['Float']>;
+  readonly min: Maybe<Scalars['Float']>;
+  readonly sum: Maybe<Scalars['Float']>;
+  readonly group: ReadonlyArray<YoutubeVideoGroupConnection>;
+  readonly field: Scalars['String'];
+  readonly fieldValue: Maybe<Scalars['String']>;
+};
+
+
+type YoutubeVideoGroupConnection_distinctArgs = {
+  field: YoutubeVideoFieldsEnum;
+};
+
+
+type YoutubeVideoGroupConnection_maxArgs = {
+  field: YoutubeVideoFieldsEnum;
+};
+
+
+type YoutubeVideoGroupConnection_minArgs = {
+  field: YoutubeVideoFieldsEnum;
+};
+
+
+type YoutubeVideoGroupConnection_sumArgs = {
+  field: YoutubeVideoFieldsEnum;
+};
+
+
+type YoutubeVideoGroupConnection_groupArgs = {
+  skip: Maybe<Scalars['Int']>;
+  limit: Maybe<Scalars['Int']>;
+  field: YoutubeVideoFieldsEnum;
+};
+
+type YoutubeVideoFilterInput = {
+  readonly id: Maybe<StringQueryOperatorInput>;
+  readonly parent: Maybe<NodeFilterInput>;
+  readonly children: Maybe<NodeFilterListInput>;
+  readonly internal: Maybe<InternalFilterInput>;
+  readonly publishedAt: Maybe<DateQueryOperatorInput>;
+  readonly channelId: Maybe<StringQueryOperatorInput>;
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
+  readonly thumbnails: Maybe<YoutubeVideoThumbnailsFilterInput>;
+  readonly channelTitle: Maybe<StringQueryOperatorInput>;
+  readonly liveBroadcastContent: Maybe<StringQueryOperatorInput>;
+  readonly publishTime: Maybe<DateQueryOperatorInput>;
+  readonly videoId: Maybe<StringQueryOperatorInput>;
+  readonly watchUrl: Maybe<StringQueryOperatorInput>;
+  readonly tags: Maybe<StringQueryOperatorInput>;
+};
+
+type YoutubeVideoSortInput = {
+  readonly fields: Maybe<ReadonlyArray<Maybe<YoutubeVideoFieldsEnum>>>;
+  readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
+};
+
 type ContentfulContentTypeSysFilterInput = {
   readonly type: Maybe<StringQueryOperatorInput>;
 };
@@ -6116,15 +6443,15 @@ type ContentfulContentTypeSortInput = {
   readonly order: Maybe<ReadonlyArray<Maybe<SortOrderEnum>>>;
 };
 
+type Unnamed_1_QueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type Unnamed_1_Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+
 type SiteTitleQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type SiteTitleQueryQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
-
-type homebarryDocumentsProjectkondebilisrccomponentsseoseoTsx63159454QueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type homebarryDocumentsProjectkondebilisrccomponentsseoseoTsx63159454Query = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 type homebarryDocumentsProjectkondebilisrctemplatespostTsx2028938556QueryVariables = Exact<{
   id: Scalars['String'];

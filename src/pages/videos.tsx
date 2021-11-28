@@ -1,47 +1,55 @@
 import * as React from "react"
 import Layout from "../components/layout/layout"
 import Seo from "../components/seo/seo"
-import { YoutubeVideoNode } from "../components/youtubeVideoCard/youtubeVideoCard.model"
 import { useStaticQuery, graphql } from "gatsby"
 import YoutubeVideoCard from "../components/youtubeVideoCard/youtubeVideoCard"
 
 import "./videos.scss"
 
 type AllYoutubeVideo = {
-  allYoutubeVideo: YoutubeVideoNode
+  allYoutubeVideo: GatsbyTypes.YoutubeVideoConnection
 }
 const Videos = () => {
-  // const {
-  //   allYoutubeVideo: { edges: allVideos },
-  // } = useStaticQuery<AllYoutubeVideo>(graphql`
-  //   query {
-  //     allYoutubeVideo: allYoutubeVideo(
-  //       sort: { fields: publishedAt, order: DESC }
-  //     ) {
-  //       edges {
-  //         node {
-  //           id
-  //           title
-  //           description
-  //           videoId
-  //           publishedAt(fromNow: true, locale: "fr")
-  //           privacyStatus
-  //           channelTitle
-  //           thumbnail {
-  //             url
-  //           }
-  //           localThumbnail {
-  //             childImageSharp {
-  //               fixed(width: 300, height: 200) {
-  //                 src
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
+  const {
+    allYoutubeVideo: { nodes: allVideos },
+  } = useStaticQuery<AllYoutubeVideo>(graphql`
+    query {
+      allYoutubeVideo: allYoutubeVideo(
+        sort: { fields: publishedAt, order: DESC }
+      ) {
+        nodes {
+          id
+          publishedAt(fromNow: true, locale: "fr")
+          channelId
+          title
+          description
+          channelTitle
+          liveBroadcastContent
+          publishTime
+          videoId
+          watchUrl
+          tags
+          thumbnails {
+            default {
+              height
+              url
+              width
+            }
+            high {
+              height
+              url
+              width
+            }
+            medium {
+              height
+              width
+              url
+            }
+          }
+        }
+      }
+    }
+  `)
   const tags = [
     "+ Récentes",
     "Politique",
@@ -49,21 +57,49 @@ const Videos = () => {
     "Economie",
     "Société",
     "Education",
+    "Santé",
+    "Numérique",
   ]
+  const [selectedTags, setSelectedTags] = React.useState<string[]>([])
+
+  const handleTagsFilter = (tag: string) => {
+    if (selectedTags.includes(tag)) {
+      setSelectedTags((prevSelectedTags) =>
+        prevSelectedTags.filter((s) => s !== tag)
+      )
+    } else {
+      setSelectedTags((prevSelectedTags) => [...prevSelectedTags, tag])
+    }
+  }
+
+  const filteredVidoes = selectedTags.length
+    ? allVideos.filter((v) => v.tags.some((t) => selectedTags.includes(t)))
+    : allVideos
+
+  const isSelectedTag = (tag: string) => selectedTags.includes(tag)
   return (
     <Layout>
       <Seo title="Vidéos" />
       <div className="filter-container">
         <div className="filter-input">
           <h1>Rechercher une vidéo</h1>
-          {/* <div className="search-input">
-            <input placeholder="rechercher une vidéo" type="text" />
+          <div className="search-input">
+            <input
+              placeholder="rechercher une vidéo"
+              aria-label="rechercher une vidoé"
+              type="text"
+            />
             <button className="search-btn">Rechercher</button>
-          </div> */}
+          </div>
         </div>
         <section className="filters">
-          {tags.map(tag => (
-            <button className="filter-category">
+          {tags.map((tag) => (
+            <button
+              onClick={() => handleTagsFilter(tag)}
+              className={`filter-category ${
+                isSelectedTag(tag) ? "filter-category--selected" : ""
+              }`}
+            >
               <div className="name">{tag}</div>
             </button>
           ))}
@@ -71,9 +107,9 @@ const Videos = () => {
       </div>
       <div className="video-container">
         <section className="videos">
-          {/* {allVideos.map(video => (
-            <YoutubeVideoCard {...video.node} />
-          ))} */}
+          {filteredVidoes.map((video) => (
+            <YoutubeVideoCard {...video} />
+          ))}
         </section>
       </div>
     </Layout>

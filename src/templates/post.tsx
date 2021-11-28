@@ -3,7 +3,7 @@ import Layout from "../components/layout/layout"
 import { graphql } from "gatsby"
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import "./post.scss"
-import { GatsbyImage, IGatsbyImageData, getImage} from "gatsby-plugin-image"
+import { GatsbyImage, IGatsbyImageData, getImage } from "gatsby-plugin-image"
 import SideHeader from "../components/sideHeader/sideHeader"
 
 export type PostProps = {
@@ -17,7 +17,6 @@ export type PostProps = {
         name: string
         photo: {
           fixed: GatsbyTypes.ContentfulFixed
-          
         }
         description: string
       }
@@ -28,7 +27,7 @@ export type PostProps = {
 }
 
 export const query = graphql`
-  query($id: String!) {
+  query ($id: String!) {
     contentfulPublications(id: { eq: $id }) {
       title
       category
@@ -100,7 +99,7 @@ export default function Post(props: PostProps) {
             <div className="author">
               <div className="photo">
                 {/* <Img fixed={authorPhoto} /> */}
-                <img src={authorPhoto.src} alt="" />
+                <img src={authorPhoto.src} alt="post-author" />
               </div>
               <div className="author-info">
                 <div className="name">{name}</div>

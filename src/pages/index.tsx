@@ -7,17 +7,16 @@ import { PublicationType, PublicationNode } from "../models/home"
 import { Separator } from "../components/separator/separator"
 import "./index.scss"
 import YoutubeVideoCard from "../components/youtubeVideoCard/youtubeVideoCard"
-import { YoutubeVideoNode } from "../components/youtubeVideoCard/youtubeVideoCard.model"
 
 export type HomeDataNodes = {
   allContentfulPublications: PublicationNode
-  // allYoutubeVideo: YoutubeVideoNode
+  allYoutubeVideo: GatsbyTypes.YoutubeVideoConnection
 }
 
 const IndexPage = () => {
   const {
     allContentfulPublications: { edges: publications },
-    // allYoutubeVideo: { edges: allVideos },
+    allYoutubeVideo: { nodes: allVideos },
   } = useStaticQuery<HomeDataNodes>(graphql`
     query {
       allContentfulPublications: allContentfulPublications(
@@ -40,7 +39,40 @@ const IndexPage = () => {
           }
         }
       }
-
+      allYoutubeVideo: allYoutubeVideo(
+        sort: { fields: publishedAt, order: DESC }
+      ) {
+        nodes {
+          id
+          publishedAt(fromNow: true, locale: "fr")
+          channelId
+          title
+          description
+          channelTitle
+          liveBroadcastContent
+          publishTime
+          videoId
+          watchUrl
+          tags
+          thumbnails {
+            default {
+              height
+              url
+              width
+            }
+            high {
+              height
+              url
+              width
+            }
+            medium {
+              height
+              width
+              url
+            }
+          }
+        }
+      }
     }
   `)
 
@@ -71,16 +103,18 @@ const IndexPage = () => {
                   backgroundImage: `url(${src})`,
                   backgroundSize: "cover",
                 }}
-                className={`publication-post ${index === 0 ? "main-article" : ""
-                  } `}
+                className={`publication-post ${
+                  index === 0 ? "main-article" : ""
+                } `}
                 to={`/post/${id}`}
               >
                 {/* <article> */}
                 <div
-                  className={`post-type post-type${publicationType === PublicationType.TRIBUNE
+                  className={`post-type post-type${
+                    publicationType === PublicationType.TRIBUNE
                       ? "--tribune"
                       : "--publication"
-                    }`}
+                  }`}
                 >
                   {publicationType}
                 </div>
@@ -102,9 +136,9 @@ const IndexPage = () => {
         </section>
         <Separator title="Nous en parlons!" />
         <section className="last-videos">
-          {/* {allVideos.slice(0, 4).map(video => (
-            <YoutubeVideoCard {...video.node} />
-          ))} */}
+          {allVideos.slice(0, 4).map((video) => (
+            <YoutubeVideoCard {...video} />
+          ))}
         </section>
         {/* <Separator title="Tribunes récentes" />
         <Separator title="Dernières rencontres" /> */}

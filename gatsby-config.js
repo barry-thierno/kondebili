@@ -82,6 +82,7 @@ module.exports = {
       options: {
         outputPath: `src/__generated__/gatsby-types.d.ts`,
       }
-    }
+    },
+    `youtube-source-plugin`
   ],
 };

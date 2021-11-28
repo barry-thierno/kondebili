@@ -62,7 +62,11 @@
         // border-color: #00796b;
         // color: #00796b;
         transform: scale(1.05);
-        font-size: 0.95rem;
+        // font-size: 0.95rem;
+      }
+      &--selected {
+        background-color: #282828;
+        border: none;
       }
     }
   }

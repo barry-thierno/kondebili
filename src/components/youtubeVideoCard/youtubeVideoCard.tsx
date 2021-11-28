@@ -1,20 +1,15 @@
 import * as React from "react"
 import "./youtubeVideoCard.scss"
-import { VideoNode } from "./youtubeVideoCard.model"
+import { parseHtmlEntities } from "../../utils/htmlUtils"
 
-type YoutubeVideoCardProps = VideoNode
-
-const buildYoutubeVideoUrl = (idVideo: string) =>
-  `https://www.youtube.com/watch?v=${idVideo}`
+type YoutubeVideoCardProps = GatsbyTypes.YoutubeVideo
 
 const YoutubeVideoCard: React.FunctionComponent<YoutubeVideoCardProps> = ({
   title,
-  videoId,
   publishedAt,
-  localThumbnail: {
-    childImageSharp: {
-      fixed: { src },
-    },
+  watchUrl,
+  thumbnails: {
+    high: { url },
   },
 }) => {
   return (
@@ -23,11 +18,11 @@ const YoutubeVideoCard: React.FunctionComponent<YoutubeVideoCardProps> = ({
         <span className="material-icons">video_library</span>
         <div>Vidéo Youtube</div>
       </div>
-      <img src={src} alt="article" />
+      <img src={url} alt="article" />
       <div className="meeting-post-details">
-        <h2>{title}</h2>
+        <h2>{parseHtmlEntities(title)}</h2>
         <div className="meeting-post-infos">
-          <a href={buildYoutubeVideoUrl(videoId)}>Voir la Publication</a>
+          <a href={watchUrl}>Voir la Publication</a>
           <div className="meeting-post-date">
             <span className="material-icons">access_time</span>
             <span>{publishedAt}</span>

@@ -3,6 +3,7 @@ module.exports = {
     title: `Kondebili`,
     description: `Kondebili est un laboratoire d'idée`,
     author: `Kondebili Team`,
+    siteUrl: "https://kondebili.org/",
   },
   plugins: [
     {
@@ -77,11 +78,12 @@ module.exports = {
         path: `${__dirname}/src/markdowns/`,
       },
     },
-    { 
+    {
       resolve: `gatsby-plugin-typegen`,
       options: {
         outputPath: `src/__generated__/gatsby-types.d.ts`,
-      }
-    }
+      },
+    },
+    `youtube-source-plugin`,
   ],
-};
+}
